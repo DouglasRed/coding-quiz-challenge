@@ -7,79 +7,111 @@
 :root {
   --primary: #1b1464;
   --secondary: #0652dd;
-  --tertiary: #1289A7
+  --tertiary: #ae0ed6;
+  --wrong: #f70303;
+  --correct: #0ddf0d;
   --grey: #333;
   font-size: 62.5%;
 }
-header{
-  margin:2rem 2rem 8rem 2rem;
+
+body {
+  color: var(--grey);
 }
 
-.high-score{
+header {
+  margin: 2rem 2rem 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.high-score {
   text-decoration: none;
   font-size: 2rem;
   color: var(--secondary);
 }
 
-.timer{
+.timer {
   text-decoration: none;
+  font-size: 2rem;
+  margin-right: 2rem;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+#question-container {
+  text-align: center;
+  width: 800px;
+  max-width: 80%;
+}
+
+h1 {
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 3rem;
+}
+.intro-text {
+  text-align: center;
   font-size: 2rem;
 }
 
-.container{
+.btn {
+  display: block;
+  margin: 1.5rem 0 1.5rem 0;
+  padding: 0.5rem;
+  background: var(--primary);
+  color: #ddd;
+  border: none;
+  border-radius: 12px;
+  margin-top: 2rem;
+  outline: none;
+  font-size: 2.2rem;
+}
+
+.btn-col {
+  flex-direction: column;
+  /* display: none; */
+}
+
+.get-started {
   display: flex;
+  flex-direction: column;
 }
 
-h1{
-  font-size: 4rem;
-  font-weight:900;
-  margin-bottom: 3rem;
-}
-
-.home-screen{
- text-align: center;
- position: relative;
- margin: 0 10rem 0 10rem;
-
-}
-
-.intro-text{
-  font-size: 2.5rem;
-
-  
-}
-
-.home-btn{
+.progress-btns {
+  display: flex;
   justify-content: center;
   align-items: center;
-
 }
-
-/* .question-btn{
-
-} */
-
-.btn {
-  outline: none;
-  border: none;
-  display: inline-block;
-  padding: 10px 15px;
-  background: var(--primary);
-  font-size: 2.2rem;
-  color: #ddd;
-  border-radius: 12px;
-  box-shadow: 0 3px var(--grey);
-  margin-top: 2rem;
-}
-
 
 .btn:hover {
-  box-shadow: 0 2px var(--grey);
   background: var(--secondary);
-  /* top: -2px; */
+  top: -2px;
 }
-.btn:active {
-  box-shadow: 0 0px var(--grey);
-  background: var(--secondary);
-  /* top: 0; */
+/* .btn:active {
+  background: var(--tertiary);
+  top: 0;
+} */
+
+.start-btn,
+.next-btn {
+  padding: 1rem 2rem;
+  /* display: none; */
+}
+
+.btn.correct {
+  background: var(--correct);
+}
+
+.btn.wrong {
+  background: var(--wrong);
+}
+
+.hide {
+  display: none;
 }
