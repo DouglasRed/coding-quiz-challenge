@@ -20,10 +20,12 @@ var startQuiz = function () {
 };
 
 function setNextQuestion() {
+  resetState();
   showQuestion(shuffledQuestions[currentQuestionIndex]);
 }
 
 function showQuestion(question) {
+  var question = questions[currentQuestionIndex];
   questionEl.innerText = question.question;
   question.answers.forEach((answer) => {
     var button = document.createElement("button");
@@ -32,12 +34,39 @@ function showQuestion(question) {
     if (answer.correct) {
       button.dataset.correct = answer.correct;
     }
-    button.addEventListner("click", selectAnswer);
+    button.addEventListener("click", selectAnswer);
     answerButtonEl.appendChild(button);
   });
 }
 
-function selectAnswer(e) {}
+function resetState() {
+  nextButtonEl.classList.add("hide");
+}
+
+function selectAnswer(event) {
+  var selectedButton = e.target;
+  var correct = selectedButton.dataset.correct;
+  // console.log(questions.answers);
+  setStatusClass(questionContainerEl, correct);
+  Array.from(answerButtonEl.children).forEach((button) => {
+    setStatusClass(button, button.dataset.correct);
+  });
+}
+
+var setStatusClass = function (element, correct) {
+  clearStatusClass();
+  if (correct) {
+    element.classList.add("btn-correct");
+  } else {
+    element.classList.add("btn-wrong");
+  }
+};
+
+function clearStatusClass(element) {
+  element.classList.remove("btn-correct");
+  element.classList.remove("btn-wrong");
+  // console.log("Hello");
+}
 
 var questions = [
   {
@@ -59,7 +88,7 @@ var questions = [
     ],
   },
   {
-    question: "Arrays in JavaScript can be usede to store ____.",
+    question: "Arrays in JavaScript can be used to store ____.",
     answers: [
       { text: "1. numbers and strings", correct: false },
       { text: "2. other arrays", correct: false },

@@ -104,11 +104,11 @@ h1 {
   /* display: none; */
 }
 
-.btn.correct {
+.btn-correct {
   background: var(--correct);
 }
 
-.btn.wrong {
+.btn-wrong {
   background: var(--wrong);
 }
 
