@@ -10,6 +10,16 @@ var shuffledQuestions;
 var startQuiz = function () {
   var timer = 5;
   quizTimer.textContent = timer;
+  var timeInterval = setInterval(function () {
+    if (timer >= 1) {
+      quizTimer.textContent = timer;
+      timer--;
+    } else {
+      quizTimer.textContent = 0;
+      clearInterval(timeInterval);
+      alert("Time has expired");
+    }
+  }, 1000);
   shuffledQuestions = questions.sort(() => Math.random() - 0.5);
   currentQuestionIndex = 0;
   startButtonEl.classList.add("hide");
@@ -17,57 +27,56 @@ var startQuiz = function () {
   document.querySelector(".btn-col").classList.remove("hide");
   document.querySelector(".intro-text").classList.add("hide");
   setNextQuestion();
-};
 
-function setNextQuestion() {
-  resetState();
-  showQuestion(shuffledQuestions[currentQuestionIndex]);
-}
+  function setNextQuestion() {
+    resetState();
+    showQuestion(shuffledQuestions[currentQuestionIndex]);
+  }
 
-function showQuestion(question) {
-  var question = questions[currentQuestionIndex];
-  questionEl.innerText = question.question;
-  question.answers.forEach((answer) => {
-    var button = document.createElement("button");
-    button.innerText = answer.text;
-    button.classList.add("btn");
-    if (answer.correct) {
-      button.dataset.correct = answer.correct;
+  function showQuestion(question) {
+    var question = questions[currentQuestionIndex];
+    questionEl.innerText = question.question;
+    question.answers.forEach((answer) => {
+      var button = document.createElement("button");
+      button.innerText = answer.text;
+      button.classList.add("btn");
+      if (answer.correct) {
+        button.dataset.correct = answer.correct;
+      }
+      button.addEventListener("click", selectAnswer);
+      answerButtonEl.appendChild(button);
+    });
+  }
+
+  function resetState() {
+    nextButtonEl.classList.add("hide");
+  }
+
+  function selectAnswer(e) {
+    var selectedButton = e.target;
+    var correct = selectedButton.dataset.correct;
+    // console.log(questions.answers);
+    setStatusClass(questionContainerEl, correct);
+    Array.from(answerButtonEl.children).forEach((button) => {
+      setStatusClass(button, button.dataset.correct);
+    });
+  }
+
+  var setStatusClass = function (element, correct) {
+    clearStatusClass();
+    if (correct) {
+      element.classList.add("btn-correct");
+    } else {
+      element.classList.add("btn-wrong");
     }
-    button.addEventListener("click", selectAnswer);
-    answerButtonEl.appendChild(button);
-  });
-}
+  };
 
-function resetState() {
-  nextButtonEl.classList.add("hide");
-}
-
-function selectAnswer(event) {
-  var selectedButton = e.target;
-  var correct = selectedButton.dataset.correct;
-  // console.log(questions.answers);
-  setStatusClass(questionContainerEl, correct);
-  Array.from(answerButtonEl.children).forEach((button) => {
-    setStatusClass(button, button.dataset.correct);
-  });
-}
-
-var setStatusClass = function (element, correct) {
-  clearStatusClass();
-  if (correct) {
-    element.classList.add("btn-correct");
-  } else {
-    element.classList.add("btn-wrong");
+  function clearStatusClass(element) {
+    element.classList.remove("btn-correct");
+    element.classList.remove("btn-wrong");
+    // console.log("Hello");
   }
 };
-
-function clearStatusClass(element) {
-  element.classList.remove("btn-correct");
-  element.classList.remove("btn-wrong");
-  // console.log("Hello");
-}
-
 var questions = [
   {
     question: "Commonly used data types DO NOT include:",

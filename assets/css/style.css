@@ -115,3 +115,20 @@ h1 {
 .hide {
   display: none;
 }
+
+.hs-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.progress-btns {
+  gap: 1rem;
+}
+
+.hs-btn {
+  text-decoration: none;
+}
