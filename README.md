@@ -6,7 +6,7 @@ This website will allow users to test their JavaScript knowledge and answer a se
 
 ## Usage
 
-To test your knowlegde, you can do so by checking out my quiz at https://douglasred.github.io/coding-quiz-challenge/
+To test your knowledge, you can do so by checking out my quiz at https://douglasred.github.io/coding-quiz-challenge/
 
 To download my code, you can access my github page at https://github.com/DouglasRed/coding-quiz-challenge/tree/main
 
