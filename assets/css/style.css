@@ -9,7 +9,7 @@
   --secondary: #0652dd;
   --tertiary: #ae0ed6;
   --wrong: #f70303;
-  --correct: #0ddf0d;
+  --correct: #036903;
   --grey: #333;
   font-size: 62.5%;
 }
@@ -104,11 +104,13 @@ h1 {
   /* display: none; */
 }
 
-.btn-correct {
+.btn-correct,
+.btn-correct:hover {
   background: var(--correct);
 }
 
-.btn-wrong {
+.btn-wrong,
+.btn-wrong:hover {
   background: var(--wrong);
 }
 
@@ -131,4 +133,29 @@ h1 {
 
 .hs-btn {
   text-decoration: none;
+}
+
+.highscores {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.highscores h2,
+.highscores h3 {
+  align-self: center;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+.text-input {
+  width: 200px;
+  align-self: center;
+  justify-content: center;
+}
+.save-btn {
+  padding: 20px;
+  align-self: center;
+  justify-content: center;
+  width: 200px;
 }
