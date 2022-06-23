@@ -73,21 +73,24 @@ var startQuiz = function () {
     });
   }
 
-  //removes the next button once it is clicked
+  //removes the next button once it is clicked and gets rid of old answer buttons
   function resetState() {
     nextButtonEl.classList.add("hide");
     quizButtonEl.classList.add("hide");
     answerButtonEl.innerHTML = "";
   }
 
+  // If the correct button  is selected add 1 to score. Else remove 3 seconds and -1 from score if score is greater than zero.
   function selectAnswer(e) {
     var selectedButton = e.target;
     var correct = selectedButton.dataset.correct;
 
+    //Gives each button an object name correct with a value of either true or false.
     setStatusClass(questionContainerEl, correct);
     Array.from(answerButtonEl.children).forEach((button) => {
       setStatusClass(button, button.dataset.correct);
     });
+    // check for the true value
     if ((selectedButton = correct)) {
       score++;
     } else {
@@ -114,7 +117,7 @@ var startQuiz = function () {
     currentQuestionIndex++;
     setNextQuestion();
   });
-
+  // add coloring to buttons once a button is selected to show the right and wrong answers
   var setStatusClass = function (element, correct) {
     clearStatusClass();
     if (correct) {
@@ -123,11 +126,14 @@ var startQuiz = function () {
       element.classList.add("btn-wrong");
     }
 
+    // removes the btn coloring by calling the clearStatusClass after pressing the next btn
     function clearStatusClass() {
       questionContainerEl.classList.remove("btn-correct");
       questionContainerEl.classList.remove("btn-wrong");
     }
   };
+  // Displays the highscore after the game ends
+
   var saveHighScore = function (event) {
     event.preventDefault();
     document.querySelector(".finalScore").innerText = score;
@@ -136,10 +142,12 @@ var startQuiz = function () {
       window.location.assign("./index.html");
     });
 
+    // An object to contain the highscores
     var scoreContainer = {
       score: score,
       name: username.value,
     };
+    //Will keep the top 5 highscores
     highScores.push(scoreContainer);
     highScores.sort((a, b) => b.score - a.score);
     highScores.splice(5);
