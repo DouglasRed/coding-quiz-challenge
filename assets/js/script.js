@@ -91,6 +91,7 @@ var startQuiz = function () {
     if ((selectedButton = correct)) {
       score++;
     } else {
+      timer -= 3;
       if (score > 0) {
         score--;
       }
