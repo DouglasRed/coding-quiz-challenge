@@ -10,4 +10,9 @@ To test your knowlegde, you can do so by checking out my quiz at https://dottyme
 
 To download my code, you can access my github page at https://github.com/dottymeerkat361/password-generator
 
-(./assets/css/images/password-generator.jpg)
+(./assets/css/images/Homescreen.jpg)
+(./assets/css/images/quiz-question.jpg)
+(./assets/css/images/final-score.jpg)
+(./assets/css/images/Highscores.jpg)
+
+A video mp4 demo can be found in my github repository.
